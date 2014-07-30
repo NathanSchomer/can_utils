@@ -21,11 +21,12 @@ void setD(int value);
  
 int main(int argc, char **argv)
 {
-        int numberOfMessagesToRead = atoi(argv[1]);
+        int numberOfMessagesToRead;
         if (argc != 2){
             printf("Please enter 1 argument to set number of messages to read\n");
             return 1;
         }
+        numberOfMessagesToRead = atoi(argv[1]);
         int s;
         int nbytes;
         struct sockaddr_can addr;

@@ -12,7 +12,6 @@
 #include <linux/can/raw.h>
 
 //Device IDs
-//#define TOGGLE_MOTORS 5
 #define BB_ID 0
 #define MOTOR1_ID 1
 #define MOTOR2_ID 2
@@ -21,9 +20,11 @@
 
 //COMMAND INTERFACE
 #define ECHO 0
-#define MODE 1
-#define SET_GAIN 2
+#define LED 1
+#define TOGGLE_MOTOR 2
 #define SET_VELOCITY 3
+#define SET_GAIN 4
+#define MODE 5
 
 //PID param IDs
 #define SET_P 1
@@ -90,7 +91,20 @@ int printCANFrame(struct can_frame frame);
 //echo:
 //"echos back the message it was send"
 //motor -> "motor ID number"
-void echo(int motor);
+int echo(int motor);
+
+//mode:
+//"sets the current mode of the robot"
+//motor -> "motor ID number"
+//mode -> "mode ID"
+void setMode(int motor, int mode);
+
+//setLED:
+//"toggles an LED on and off"
+//motor -> "motor ID number"
+//on -> "on=1 turns on motor and on=0 turns off motor
+//      The motor retains the velocity it had when it was disabled when it is reenabled"
+void setLED(int motor, int on);
 
 //toggleMotor:
 //"Enables and disables the motors"
